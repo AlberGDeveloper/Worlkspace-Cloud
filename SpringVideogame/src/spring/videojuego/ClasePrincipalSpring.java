@@ -15,7 +15,7 @@ public class ClasePrincipalSpring {
 	public static ApplicationContext context = null;
 
 	public static void main(String[] args) {
-		context = new ClassPathXmlApplicationContext("recursos/Context.xml");
+		context = new ClassPathXmlApplicationContext("resources/Context.xml");
 
 		Personaje arquero = context.getBean("arquero", Personaje.class);
 		Personaje mago = context.getBean("mago", Personaje.class);
