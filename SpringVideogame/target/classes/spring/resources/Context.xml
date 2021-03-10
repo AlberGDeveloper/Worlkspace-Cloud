@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+
+<bean id="curandero" class="entidad.Healer">
+	<property name="vida" value="150"></property>
+	<property name="nombre" value="Pryda"></property>
+	<property name="nivel" value="4"></property>
+	<property name="iniciativa" value="3"></property>
+	<property name="arma">
+		<bean class="Rezo">
+			<property name="dañoMaximo" value="65"></property>
+			<property name="dañoMinimo" value="10"></property>
+			<property name="tipo" value="Punicion"></property>
+		</bean>
+	</property>
+</bean>
+
+<bean id="guerrero" class="entidad.Guerrero">
+	<property name="vida" value="180"></property>
+	<property name="nombre" value="Qhenthalas"></property>
+	<property name="nivel" value="2"></property>
+	<property name="iniciativa" value="4"></property>
+	<property name="arma">
+		<bean class="entidad.Espada">
+			<property name="dañoMaximo" value="165"></property>
+			<property name="dañoMinimo" value="10"></property>
+			<property name="tipo" value="FrostMourne"></property>
+		</bean>
+	</property>
+</bean>
+
+<bean id="mago" class="entidad.Mago">
+	<property name="vida" value="100"></property>
+	<property name="nombre" value="Lefleur"></property>
+	<property name="nivel" value="2"></property>
+	<property name="iniciativa" value="4"></property>
+	<property name="arma">
+		<bean class="entidad.Hechizo">
+			<property name="dañoMaximo" value="185"></property>
+			<property name="dañoMinimo" value="1"></property>
+			<property name="tipo" value="Qhel'dalas"></property>
+		</bean>
+	</property>
+</bean>
+</beans>
