@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="SALON" class="uem.entidad.Habitacion">
+		<property name="tipo" value="SALON"></property>
+		<property name="metros" value="50"></property>
+	</bean>
+
+	<bean id="COCINA" class="uem.entidad.Habitacion">
+		<property name="tipo" value="COCINA"></property>
+		<property name="metros" value="25"></property>
+	</bean>
+
+	<bean id="WC" class="uem.entidad.Habitacion">
+		<property name="tipo" value="WC"></property>
+		<property name="metros" value="20"></property>
+	</bean>
+
+	<bean id="DORMITORIO" class="uem.entidad.Habitacion">
+		<property name="tipo" value="DORMITORIO"></property>
+		<property name="metros" value="25"></property>
+	</bean>
+
+	<bean id="DORMITORIO_INVITADOS" class="uem.entidad.Habitacion">
+		<property name="tipo" value="DORMITORIO"></property>
+		<property name="metros" value="25"></property>
+	</bean>
+
+	<bean id="CASA" class="uem.entidad.Casa">
+		<property name="direccion">
+			<bean class="uem.entidad.Direccion">
+				<property name="tipoVia" value="Calle"></property>
+				<property name="nombrevia" value="Alto de la Sartenilla"></property>
+				<property name="cp" value="28051"></property>
+			</bean>
+		</property>
+	</bean>
+	<bean id="arrayhabitaciones" class="java.util.ArrayList">
+		<constructor-arg>
+			<list>
+				<ref bean="SALON" />
+				<ref bean="COCINA" />
+				<ref bean="DORMITORIO" />
+				<ref bean="DORMITORIO_INVITADOS" />
+			</list>
+		</constructor-arg>
+
+	</bean>
+	<bean class="uem.entidad.Persona" id="persona1">
+		<property name="nombre" value="Carla"></property>
+		<property name="edad" value="30"></property>
+		<property name="direccion" ref="direccion"></property>
+	</bean>
+	<bean class="uem.entidad.Persona" id="persona2">
+		<property name="nombre" value="Alber"></property>
+		<property name="edad" value="33"></property>
+		<property name="direccion" ref="direccion"></property>
+	</bean>
+	<bean id="arrayinquilinos" class="java.util.ArrayList">
+		<constructor-arg>
+			<list>
+				<ref bean="persona2"></ref>
+				<ref bean="persona3"></ref>
+			</list>
+		</constructor-arg>
+	</bean>
+	<bean class="uem.entidad.Casa" id="casa">
+		<property name="metros" value="300"></property>
+		<property name="habitaciones" ref="arrayhabitaciones"></property>
+		<property name="propietario" ref="persona1"></property>
+		<property name="inquilinos" ref="arrayinquilinos"></property>
+	</bean>
+	
+  
+</beans>
