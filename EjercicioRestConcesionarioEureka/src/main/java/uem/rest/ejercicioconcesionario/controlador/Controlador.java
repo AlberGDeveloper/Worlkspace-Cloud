@@ -3,6 +3,7 @@ package uem.rest.ejercicioconcesionario.controlador;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -20,6 +21,9 @@ public class Controlador {
 
 	@Autowired
 	public GestionarCoches gestioncoche;
+
+	@Autowired
+	private Environment environment;
 
 	@GetMapping("coche")
 	public ResponseEntity<List<Coche>> listar() {
@@ -47,19 +51,21 @@ public class Controlador {
 		ResponseEntity<Coche> re = new ResponseEntity<Coche>(c, codigoRespuesta);
 		return re;
 	}
-	
+
 	@GetMapping("coches/{id}")
-	public ResponseEntity<Coche> obtener(@PathVariable("id") int id){
+	public ResponseEntity<Coche> obtener(@PathVariable("id") int id) {
 		Coche c = gestioncoche.obtener(id);
 		HttpStatus codigoRespuesta = null;
-		if(c != null) {
+		if (c != null) {
+			String serverPort = environment.getProperty("local.server.port");
+			c.setMarca(serverPort+":"+c.getMarca());
 			codigoRespuesta = HttpStatus.OK;
-		}else {
+		} else {
 			codigoRespuesta = HttpStatus.NOT_FOUND;
 		}
 		ResponseEntity<Coche> re = new ResponseEntity<Coche>(c, codigoRespuesta);
 		return re;
-		}
+	}
 
 	@PutMapping("coche/{id}")
 	public ResponseEntity<Coche> modificar(@RequestBody Coche coche, @PathVariable("id") int id) {
